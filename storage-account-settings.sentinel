@@ -9,7 +9,7 @@ allStorageAccounts = filter tfplan.resource_changes as _, rc {
 
 print("Ensure cross_tenant_replication_enabled, allow_nested_items_to_be_public, shared_access_key_enabled are disabled and identity type is set as system assigned")
 
-cross_tenant_replication_enabled = rule { 
+cross_tenant_replication_disabled = rule { 
      all allStorageAccounts as _, sa {
          sa.change.after.cross_tenant_replication_enabled is not true
    }   
@@ -43,7 +43,7 @@ identity_type = rule when identity_block_exists is true {
 
 
 main = rule {
-   cross_tenant_replication_enabled and 
+   cross_tenant_replication_disabled and 
    allow_nested_items_to_be_public and
    shared_access_key_enabled and
    identity_block_exists else false and

@@ -7,7 +7,7 @@ allStorageAccounts = filter tfplan.resource_changes as _, rc {
         rc.provider_name is "registry.terraform.io/hashicorp/azurerm" 
 }
 
-print("Ensure cross_tenant_replication_enabled, allow_nested_items_to_be_public, shared_access_key_enabled are disabled and identity type is set as system assigned")
+print("Ensure cross_tenant_replication is disabled, allow_nested_items_to_be_public is disabled, shared_access_key_enabled are disabled and identity type is set as system assigned")
 
 cross_tenant_replication_disabled = rule { 
      all allStorageAccounts as _, sa {
